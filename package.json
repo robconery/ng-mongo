@@ -1,0 +1,23 @@
+{
+  "name": "ng-mongo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "supervisor server.js"
+  },
+  "dependencies": {
+    "express": "3.1.0",
+    "ejs" : "0.8.3",
+    "underscore" : "1.4.4",
+    "mongoskin" : "0.5.0"
+  },
+  "devDependencies": {
+    "supervisor"    :  "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tekpub/ng-mongo.git"
+  },
+  "keywords": ["angular", "mongo", "mongodb", "admin"],
+  "engines": { "node": ">= 0.8.0" }
+}
