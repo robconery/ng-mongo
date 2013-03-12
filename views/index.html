@@ -39,14 +39,28 @@
   </div>
 </div>
 
-<div class="container">
-  <h1>Welcome to the Show</h1>
-</div>
+<div class="container" ng-app>
+  <div ng-controller="ListCtrl">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>DBs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in items">
+          <td>{{item.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ </div>
 
 <script src="/javascripts/vendor/jquery.js"></script>
 <script src="/javascripts/vendor/underscore.js"></script>
 <script src="/javascripts/vendor/angular.js"></script>
-
+<script src="/javascripts/ng-mongo/app.js"></script>
 </body>
 </html>
 
