@@ -39,27 +39,33 @@
   </div>
 </div>
 
-<div class="container" ng-app>
-  <div ng-controller="ListCtrl">
-
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>DBs</th>
-        </tr>
-      </thead>
-      <tbody>
+<div class="container" ng-app="ngMongo">
+  <div ng-controller="ListCtrl" class="row">
+    <div class="span9">
+      <table class="table table-striped">
+        <tbody>
         <tr ng-repeat="item in items">
           <td>{{item.name}}</td>
+          <td>
+            <button class="btn btn-danger" ng-click="removeDb(item)">
+              <i class="icon icon-remove icon-white"></i>
+            </button>
+          </td>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <input type="text" ng-model="newDbName">
+      <button class="btn btn-success" ng-click="addDb()">Add</button>
+    </div>
   </div>
  </div>
 
 <script src="/javascripts/vendor/jquery.js"></script>
 <script src="/javascripts/vendor/underscore.js"></script>
 <script src="/javascripts/vendor/angular.js"></script>
+<script src="/javascripts/vendor/angular-resource.js"></script>
 <script src="/javascripts/ng-mongo/app.js"></script>
 </body>
 </html>
