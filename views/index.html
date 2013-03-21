@@ -40,32 +40,38 @@
 </div>
 
 <div class="container" ng-app="ngMongo">
-  <div ng-controller="ListCtrl" class="row">
-    <div class="span9">
-      <table class="table table-striped">
-        <tbody>
-        <tr ng-repeat="item in items">
-          <td>{{item.name}}</td>
-          <td>
-            <button class="btn btn-danger" ng-click="removeDb(item)">
-              <i class="icon icon-remove icon-white"></i>
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+  <script type="text/ng-template" id="list-template.html">
+    <div class="row">
+      <div class="span9">
+        <table class="table table-striped">
+          <tbody>
+          <tr ng-repeat="item in items">
+            <td>
+              <h4>
+                <a href='/#/{{item.details}}'>{{item.name}}</a>
+              </h4>
+            </td>
+            <td>
+              <delete-button action="removeItem(item)"></delete-button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="span3">
+        <input type="text" ng-model="newItemName">
+        <add-button text="Add" action="addItem()"></add-button>
+      </div>
     </div>
-    <div class="span3">
-      <input type="text" ng-model="newDbName">
-      <button class="btn btn-success" ng-click="addDb()">Add</button>
-    </div>
-  </div>
+  </script>
+  <ng-view></ng-view>
  </div>
 
 <script src="/javascripts/vendor/jquery.js"></script>
 <script src="/javascripts/vendor/underscore.js"></script>
 <script src="/javascripts/vendor/angular.js"></script>
 <script src="/javascripts/vendor/angular-resource.js"></script>
+<script src="/javascripts/tekpub/ng-bootstrap.js"></script>
 <script src="/javascripts/ng-mongo/app.js"></script>
 </body>
 </html>
