@@ -10,6 +10,10 @@ ngMongo.config(function($routeProvider){
         templateUrl : "list-template.html",
         controller : "ListCtrl"
       })
+      .when("/:database/:collection", {
+        templateUrl : "document-template.html",
+        controller : "DocumentCtrl"
+      })
       .otherwise({
         template : "<h1>Not Found</h1>"
       })
@@ -19,15 +23,21 @@ ngMongo.config(function($routeProvider){
 ngMongo.factory("Mongo",function($resource){
   return {
     database : $resource("/mongo-api/dbs"),
-    collection : $resource("/mongo-api/:database")
+    collection : $resource("/mongo-api/:database"),
+    document : $resource("/mongo-api/:database/:collection")
   }
 });
 
 ngMongo.directive("deleteButton", Tekpub.Bootstrap.DeleteButton);
 ngMongo.directive("addButton", Tekpub.Bootstrap.AddButton);
+ngMongo.directive("breadcrumbs",Tekpub.Bootstrap.Breadcrumbs);
+
+
+ngMongo.controller("DocumentCtrl", function($scope,$routeParams, Mongo){
+  $scope.documents = Mongo.document.query($routeParams);
+});
 
 ngMongo.controller("ListCtrl", function($scope, $routeParams, Mongo){
-
   var context = "database";
   if($routeParams.database) context = "collection";
 
