@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<div class="container" ng-app="ngMongo">
+<div class="container">
   <script type="text/ng-template" id="list-template.html">
     <breadcrumbs></breadcrumbs>
     <div class="row">
@@ -81,8 +81,6 @@
       </div>
     </div>
   </script>
-
-
   <ng-view></ng-view>
  </div>
 
@@ -92,6 +90,14 @@
 <script src="/javascripts/vendor/angular-resource.js"></script>
 <script src="/javascripts/tekpub/ng-bootstrap.js"></script>
 <script src="/javascripts/ng-mongo/app.js"></script>
+<script type="text/javascript">
+  //server-loaded payload here...
+
+  $.get("/mongo-api", function(api){
+    Tekpub.MongoApp.start("ngMongo", api);
+  })
+
+</script>
 </body>
 </html>
 
