@@ -49,7 +49,7 @@
           <tr ng-repeat="item in items">
             <td>
               <h4>
-                <a href='/#/{{item.details}}'>{{item.name}}</a>
+                <a href="{{item | mongolink:'name'}}" >{{item.name}}</a>
               </h4>
             </td>
             <td>
@@ -71,16 +71,35 @@
     <div class="row">
       <div class="span9" id="document-list">
         <ul >
-          <li class="document pull-left" ng-repeat="doc in documents">
-            {{doc._id}}
+          <li class="document pull-left" ng-repeat="doc in documents | filter:documentName">
+            <p>
+              <a href="{{doc | mongolink:'id'}}">{{doc | descriptivename}}</a>
+            </p>
           </li>
         </ul>
       </div>
       <div class="span3">
-        <h3><a href="#">Add Document</a></h3>
+        <h3><a href="{{null | mongolink}}">Add Document</a></h3>
+        <aside class="well">
+          <label>Filter Documents</label>
+          <input type="text" ng-model="documentName">
+        </aside>
       </div>
     </div>
   </script>
+
+  <script type="text/ng-template" id="editor-template.html">
+    <breadcrumbs></breadcrumbs>
+    <div class="row">
+      <div id="ace-editor" class="span9"></div>
+      <div class="span3 pull-right">
+        <add-button text="Save" action="saveDocument()"></add-button>
+        <delete-button text = "Delete" action="deleteDocument()"></delete-button>
+      </div>
+    </div>
+  </script>
+
+
   <ng-view></ng-view>
  </div>
 
@@ -89,14 +108,13 @@
 <script src="/javascripts/vendor/angular.js"></script>
 <script src="/javascripts/vendor/angular-resource.js"></script>
 <script src="/javascripts/tekpub/ng-bootstrap.js"></script>
+<script src="/javascripts/vendor/ace/ace.js"></script>
+<script src="/javascripts/vendor/ace/mode-json.js"></script>
 <script src="/javascripts/ng-mongo/app.js"></script>
 <script type="text/javascript">
-  //server-loaded payload here...
-
   $.get("/mongo-api", function(api){
     Tekpub.MongoApp.start("ngMongo", api);
   })
-
 </script>
 </body>
 </html>

@@ -27,18 +27,15 @@ Tekpub.Bootstrap.DeleteButton = function(){
 Tekpub.Bootstrap.Breadcrumbs = function($routeParams){
   return {
     restrict : "E",
-    scope : {
-      context : "="
-    },
     controller : function($scope){
       var rootUrl = "#/";
       $scope.crumbs = [{url : rootUrl, text : "Databases"}];
       var runningUrl = rootUrl;
+
       for(var param in $routeParams){
-        runningUrl += $routeParams[param];
+        runningUrl += $routeParams[param] + "/";
         $scope.crumbs.push({url : runningUrl, text : $routeParams[param]});
       }
-
       $scope.notLast = function(crumb){
         return crumb !== _.last($scope.crumbs);
       }
