@@ -1,4 +1,3 @@
-var Tekpub = Tekpub || {};
 Tekpub.Bootstrap = {};
 Tekpub.Bootstrap.AddButton = function(){
   return {
@@ -24,10 +23,10 @@ Tekpub.Bootstrap.DeleteButton = function(){
   }
 }
 
-Tekpub.Bootstrap.Breadcrumbs = function($routeParams){
+Tekpub.Bootstrap.Breadcrumbs = ['$routeParams',function($routeParams){
   return {
     restrict : "E",
-    controller : function($scope){
+    controller : ['$scope',function($scope){
       var rootUrl = "#/";
       $scope.crumbs = [{url : rootUrl, text : "Databases"}];
       var runningUrl = rootUrl;
@@ -39,7 +38,7 @@ Tekpub.Bootstrap.Breadcrumbs = function($routeParams){
       $scope.notLast = function(crumb){
         return crumb !== _.last($scope.crumbs);
       }
-    },
+    }],
     template : '<div class="row">' +
         '<div class="span12">' +
         '<ul class="breadcrumb">' +
@@ -50,4 +49,4 @@ Tekpub.Bootstrap.Breadcrumbs = function($routeParams){
         '</div>' +
         '</div>'
   }
-}
+}];

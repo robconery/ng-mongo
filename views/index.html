@@ -104,13 +104,12 @@
  </div>
 
 <script src="/javascripts/vendor/jquery.js"></script>
-<script src="/javascripts/vendor/underscore.js"></script>
-<script src="/javascripts/vendor/angular.js"></script>
-<script src="/javascripts/vendor/angular-resource.js"></script>
-<script src="/javascripts/tekpub/ng-bootstrap.js"></script>
+<script src="/javascripts/vendor/angular/angular.min.js"></script>
+<script src="/javascripts/vendor/angular/angular-resource.min.js"></script>
 <script src="/javascripts/vendor/ace/ace.js"></script>
 <script src="/javascripts/vendor/ace/mode-json.js"></script>
-<script src="/javascripts/ng-mongo/app.js"></script>
+<script src="/javascripts/ngmongo.js"></script>
+
 <script type="text/javascript">
   $.get("/mongo-api", function(api){
     Tekpub.MongoApp.start("ngMongo", api);
